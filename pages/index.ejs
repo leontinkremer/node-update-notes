@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%=title %></title>
+  </head>
+  <body>
+    <% if (created) { %>
+
+    <div>✔️ Note has been created</div>
+
+    <% } %>
+    <h1><%= title %></h1>
+    <p>This is working</p>
+    <form action="/" method="post">
+      <div>
+        <input type="text" name="title" required />
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+    <% if (notes.length) { %>
+    <div>
+      <ul>
+        <% for (let i = 0; i < notes.length; i++) { %>
+        <li id="li-<%= notes[i].id %>">
+          <span id="span-<%= notes[i].id %>"><%= notes[i].title %></span>
+           <button
+            type="button"
+            data-type="edit"
+            data-id="edit-<%= notes[i].id %>"
+          >
+            🖊️</button
+          > <button
+            type="button"
+            data-type="remove"
+            data-id="<%= notes[i].id %>"
+          >
+            ❌
+          </button>
+        </li>
+
+        <% } %>
+      </ul>
+    </div>
+    <% } else {%>
+    <p>🤪 No notes!</p>
+    <% } %>
+    <script src="/app.js"></script>
+  </body>
+</html>
